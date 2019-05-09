@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,21 +18,22 @@ public class StreamTest {
     @Test
     public void shouldCreateStreamFromValues() throws Exception {
         //Given
+        List<String> abcList = new ArrayList<>();
 
         //When
-        List<String> abcList = new ArrayList<String>();
+        abcList = Stream.of("a", "b", "c").collect(Collectors.toList());
 
         //Then
-
         assertThat(abcList).contains("a", "b", "c");
     }
 
     @Test
     public void shouldCreateSerieStream() throws Exception {
         //Given
+        List<Integer> numbersList = new ArrayList<>();
 
         //When
-        List<Integer> numbersList = new ArrayList<Integer>();
+        numbersList = IntStream.rangeClosed(0,27).boxed().collect(Collectors.toList());
 
         //Then
         assertThat(numbersList).contains(0, 3, 6, 9, 12, 15, 18, 21, 24, 27);
